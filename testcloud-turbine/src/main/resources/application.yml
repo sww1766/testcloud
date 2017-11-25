@@ -1,0 +1,18 @@
+spring:
+  application.name: service-turbine
+
+server:
+  port: 9100  # turbine的监听端口为9101
+eureka: 
+  client: # 客户端进行Eureka注册的配置
+    service-url:
+      defaultZone: http://name:passwd@116.62.23.39:7001/eureka,http://name:passwd@116.62.23.39:7002/eureka
+  instance:
+    # lease-renewal-interval-in-seconds: 2 # 设置心跳的时间间隔（默认是30秒）
+    # lease-expiration-duration-in-seconds: 5 # 如果现在超过了5秒的间隔（默认是90秒）
+    instance-id: service-turbine  # 在信息列表时显示主机名称
+    prefer-ip-address: true     # 访问的路径变为IP地址
+    
+turbine: 
+  app-config: TESTCLOUD-PROVIDER-DEPT  # 定义所有要监控的微服务信息，多服务用,分开
+  cluster-name-expression: new String("default")  # 设置监控的表达式，通过此表达式表示要获取监控信息名称

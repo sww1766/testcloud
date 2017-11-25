@@ -1,0 +1,28 @@
+server:
+  port: 80
+
+logging:
+  level:
+    com.service: DEBUG
+
+security:
+  basic:
+    enabled: true
+  user:
+    name: name
+    password: passwd
+    
+feign:
+  compression:
+    request:
+      mime-types:       # 可以被压缩的类型
+      - text/xml
+      - application/xml
+      - application/json
+      min-request-size: 2048 # 超过2048的字节进行压缩
+
+eureka: 
+  client: 
+    register-with-eureka: false
+    service-url: 
+      defaultZone: http://name:passwd@116.62.23.39:7001/eureka,http://name:passwd@116.62.23.39:7002/eureka

@@ -1,0 +1,30 @@
+server:
+  port: 8002
+
+eureka:
+  client: # 客户端进行Eureka注册的配置
+    service-url:
+      defaultZone: http://name:passwd@116.62.23.39:7001/eureka,http://name:passwd@116.62.23.39:7002/eureka
+  instance:
+    #lease-renewal-interval-in-seconds: 2 # 设置心跳的时间间隔（默认是30秒）
+    #lease-expiration-duration-in-seconds: 5 # 如果现在超过了5秒的间隔（默认是90秒）
+    instance-id: dept-8002  # 在信息列表时显示主机名称
+    prefer-ip-address: true     # 访问的路径变为IP地址
+    hostname: dept-8002
+
+info:
+  app.name: testcloud
+  company.name: www.test007.cc
+  build.artifactId: $project.artifactId$
+  build.version: $project.verson$
+
+security:
+  basic:
+    enabled: false
+  user:
+    name: name
+    password: passwd
+    
+spring:
+  application:
+    name: testcloud-provider-dept
