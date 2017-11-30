@@ -21,7 +21,7 @@ public class DeptRest {
 	
 	@Autowired
 	private DiscoveryClient client; //进行Eureka的发现服务
-	
+
 	@RequestMapping("/dept/discovery")
 	public Object discovery() {
 		return client;
