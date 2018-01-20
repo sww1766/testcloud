@@ -98,10 +98,11 @@
 	<modules>
 		<module>testcloud-eureka-7001</module>
 	    <module>testcloud-eureka-7002</module>
+        <module>testcloud-bean</module>
 	    <module>testcloud-provider-dept-8001</module>
 	    <module>testcloud-provider-dept-8002</module>
 	    <module>testcloud-zuul-gateway</module>
     	<module>testcloud-turbine</module>
-    <module>testcloud-config-7101</module>
+    	<module>testcloud-config-7101</module>
   </modules>
 </project>

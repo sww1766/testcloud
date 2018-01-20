@@ -17,3 +17,4 @@ eureka:
     fetch-registry: false     # 不通过eureka获取注册信息
   instance: # eureak实例定义
     hostname: eureka-7001 # 定义Eureka实例所在的主机名称
+    prefer-ip-address: true

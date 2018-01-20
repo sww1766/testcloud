@@ -3,12 +3,9 @@ package com.rest;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.bean.Dept;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
@@ -18,11 +15,12 @@ import com.service.IDeptService;
 public class DeptRest {
 	@Autowired
 	private IDeptService deptService;
-	
+
+	@Qualifier("discoveryClient")
 	@Autowired
 	private DiscoveryClient client; //进行Eureka的发现服务
 	
-	@RequestMapping("/dept/discovery")
+	@GetMapping("/dept/discovery")
 	public Object discovery() {
 		return client;
 	}

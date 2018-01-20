@@ -62,7 +62,7 @@
 		</dependency>
 	</dependencies>
 	<build>
-		<finalName>microcloud-config</finalName>
+		<finalName>testcloud-config</finalName>
 		<resources>
 			<resource>	 <!-- 访问JSK被Maven过掉 -->
 				<directory>src/main/resources</directory>
