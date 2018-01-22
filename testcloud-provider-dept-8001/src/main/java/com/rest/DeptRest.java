@@ -5,6 +5,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import com.bean.Dept;
@@ -19,7 +21,7 @@ public class DeptRest {
 	@Qualifier("discoveryClient")
 	@Autowired
 	private DiscoveryClient client; //进行Eureka的发现服务
-	
+
 	@GetMapping("/dept/discovery")
 	public Object discovery() {
 		return client;
@@ -27,6 +29,7 @@ public class DeptRest {
 	
 	@RequestMapping("/dept/sessionId")
 	public Object id(HttpServletRequest request) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		return request.getSession().getId() ;
 	}
 	
