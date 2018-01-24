@@ -16,6 +16,8 @@ security:
   oauth2:
     resource:
       filter-order: 3
+  basic:
+    enabled: false
 
 info:
   app.name: testcloud

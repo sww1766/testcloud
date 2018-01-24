@@ -23,7 +23,7 @@ public class OAuth2ServerConfig {
     private static final String DEMO_RESOURCE_ID = "order";
 
     @Configuration
-    @EnableResourceServer
+//    @EnableResourceServer
     protected static class ResourceServerConfiguration extends ResourceServerConfigurerAdapter {
 
         @Override
@@ -51,7 +51,7 @@ public class OAuth2ServerConfig {
     }
 
     @Configuration
-    @EnableAuthorizationServer
+//    @EnableAuthorizationServer
     protected static class AuthorizationServerConfiguration extends AuthorizationServerConfigurerAdapter {
         @Autowired
         AuthenticationManager authenticationManager;
@@ -76,14 +76,14 @@ public class OAuth2ServerConfig {
         }
 
         @Override
-        public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
+        public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
             endpoints
                     .tokenStore(new RedisTokenStore(redisConnectionFactory))
                     .authenticationManager(authenticationManager);
         }
 
         @Override
-        public void configure(AuthorizationServerSecurityConfigurer oauthServer) throws Exception {
+        public void configure(AuthorizationServerSecurityConfigurer oauthServer) {
             //允许表单认证
             oauthServer.allowFormAuthenticationForClients();
         }
