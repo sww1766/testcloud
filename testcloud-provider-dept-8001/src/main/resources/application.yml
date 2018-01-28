@@ -24,7 +24,7 @@ info:
   company.name: www.test007.cc
   build.artifactId: $project.artifactId$
   build.version: $project.verson$
-  
+
 spring:
   application:
     name: testcloud-provider-dept

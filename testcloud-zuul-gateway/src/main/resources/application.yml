@@ -10,7 +10,6 @@ testcloud-provider-dept:
     listOfServers: http://localhost:8001,http://localhost:8002
     
 zuul:
-  #prefix: /test-proxy
   ignored-services:
     "*"
   routes: 
@@ -30,7 +29,7 @@ security:
     password: passwd
     
 info:
-  app.name: test-microcloud-zuul
+  app.name: test-zuul
   company.name: www.test007.cc
   build.artifactId: $project.artifactId$
   build.version: $project.verson$
