@@ -1,11 +1,28 @@
 package com.filter;
 
 import com.netflix.zuul.ZuulFilter;
+import com.netflix.zuul.context.RequestContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import javax.servlet.http.HttpServletRequest;
 
 public class AuthorizedRequestFilter extends ZuulFilter {	// 进行授权访问处理
-
+	private static Logger log = LoggerFactory.getLogger(AuthorizedRequestFilter.class);
 	@Override
-	public Object run() {	// 表示具体的过滤执行操作
+	public Object run() {
+		RequestContext ctx = RequestContext.getCurrentContext();
+		HttpServletRequest request = ctx.getRequest();
+		//获取传来的参数accessToken
+		Object accessToken = request.getParameter("accessToken");
+		if(accessToken == null) {
+			log.warn("access token is empty");
+			ctx.setSendZuulResponse(false);
+			ctx.setResponseStatusCode(401);
+			ctx.setResponseBody("{\"result\":\"accessToken is empty!\"}");
+			return null;
+		}
+
 		return null;
 	}
 
