@@ -6,6 +6,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -16,12 +18,13 @@ public class AuthorizedRequestFilter extends ZuulFilter {	// 进行授权访问�
 		RequestContext ctx = RequestContext.getCurrentContext();
 		HttpServletRequest request = ctx.getRequest();
 		//获取传来的参数accessToken
-		Object accessToken = request.getParameter("accessToken");
-		if(accessToken == null) {
-			log.warn("access token is empty");
+		Object authorization = request.getHeader("Authorization");
+
+		if(authorization == null && !request.getRequestURI().equals("/authorize/getToken")) {
+			log.warn("authorization is empty");
 			ctx.setSendZuulResponse(false);
-			ctx.setResponseStatusCode(401);
-			ctx.setResponseBody("{\"result\":\"accessToken is empty!\"}");
+			ctx.setResponseStatusCode(HttpStatus.UNAUTHORIZED.value());
+			ctx.setResponseBody("{\"result\":\"authorization is empty!\"}");
 			return null;
 		}
 
