@@ -12,21 +12,23 @@ testcloud-provider-dept:
 zuul:
   ignored-services:
     "*"
-  routes: 
+  routes:
     testcloud-provider-company:
       path: /company-proxy/** 
     testcloud-provider-dept: 
       path: /dept-proxy/**
       service-id: testcloud-provider-dept
-    testcloud-provider-upload: 
+    testcloud-provider-upload:
       path: /upload-proxy/**
+  sensitive-headers:   #过滤的header列表"Cookie", "Set-Cookie", "Authorization"
+#  add-host-header: true #处理HTTP请求头信息中的Host
 
 security:
   basic:
-    enabled: true
+    enabled: false
   user:
-    name: name
-    password: passwd
+    name: zuul
+    password: 123456
     
 info:
   app.name: test-zuul

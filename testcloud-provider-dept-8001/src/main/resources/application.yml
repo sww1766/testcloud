@@ -13,9 +13,9 @@ eureka:
     hostname: dept-8001
 
 security:
-  oauth2:
-    resource:
-      filter-order: 3
+#  oauth2:
+#    resource:
+#      filter-order: 3
   basic:
     enabled: false
 

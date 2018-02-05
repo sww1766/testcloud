@@ -1,7 +1,9 @@
 package com.filter;
 
 import com.netflix.zuul.ZuulFilter;
+import org.springframework.stereotype.Component;
 
+@Component
 public class AuthorizedRequestFilter extends ZuulFilter {	// 进行授权访问处理
 
 	@Override
