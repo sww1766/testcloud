@@ -10,6 +10,9 @@ testcloud-provider-dept:
     listOfServers: http://localhost:8001,http://localhost:8002
     
 zuul:
+  host:
+    socket-timeout-millis: 60000
+    connect-timeout-millis: 10000
   ignored-services:
     "*"
   routes:
@@ -20,6 +23,17 @@ zuul:
       service-id: testcloud-provider-dept
     testcloud-provider-upload:
       path: /upload-proxy/**
+  ratelimit:
+      enabled: true #default false
+      behind-proxy: true #default false
+      policies:
+        product:
+          limit: 10
+          refresh-interval: 120 #60 default value (in seconds)
+          type: #optional
+            - user
+            - origin
+            - url
   sensitive-headers:   #过滤的header列表"Cookie", "Set-Cookie", "Authorization"
 #  add-host-header: true #处理HTTP请求头信息中的Host
 
@@ -39,3 +53,13 @@ info:
 spring:
   application:
     name: testcloud-zuul-gateway
+  redis:
+    timeout: 10
+    database: 0
+    host: 116.62.23.39
+    port: 6379
+    pool:
+      max-active: 8
+      max-idle: 8
+      max-wait: -1
+      min-idle: 0
