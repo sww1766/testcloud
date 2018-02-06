@@ -46,14 +46,17 @@ public class WebController {
                 Long nowTime = System.currentTimeMillis();
                 Lock lock = new ReentrantLock();
                 lock.lock();
-                // 当前时间减去创建时间减去5秒大于刷新时间，则刷新令牌,否则返回令牌
-                if(nowTime-createTime-5000>expireTime){
+                try {
+                    // 当前时间减去创建时间减去5秒大于刷新时间，则刷新令牌,否则返回令牌
+                    if(nowTime-createTime-5000>expireTime){
+                        logger.info(String.format("用户：%s 刷新令牌成功",username));
+                        return new ResponseBean(HttpStatus.OK.value(), "authorize success", JWTUtil.createToken(username, password));
+                    }else {
+                        logger.info(String.format("用户：%s 返回令牌成功",username));
+                        return new ResponseBean(HttpStatus.OK.value(), "authorize success", tokenObj);
+                    }
+                }finally {
                     lock.unlock();
-                    logger.info(String.format("用户：%s 刷新令牌成功",username));
-                    return new ResponseBean(HttpStatus.OK.value(), "authorize success", JWTUtil.createToken(username, password));
-                }else {
-                    logger.info(String.format("用户：%s 返回令牌成功",username));
-                    return new ResponseBean(HttpStatus.OK.value(), "authorize success", tokenObj);
                 }
             }else{
                 logger.info(String.format("用户：%s 创建令牌成功",username));
