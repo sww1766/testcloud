@@ -1,0 +1,47 @@
+server:
+  port: 9502
+
+eureka:
+  client: # 客户端进行Eureka注册的配置
+    service-url:
+      defaultZone: http://name:passwd@116.62.23.39:7001/eureka
+  instance:
+    instance-id: gateway-9502  # 在信息列表时显示主机名称
+    prefer-ip-address: true     # 访问的路径变为IP地址
+    hostname: gateway-9502
+
+ribbon:
+  eureka:
+   enabled: false
+   
+testcloud-provider-dept:
+  ribbon:
+    listOfServers: http://localhost:8001,http://localhost:8002
+    
+zuul:
+  ignored-services:
+    "*"
+  routes: 
+    testcloud-provider-company:
+      path: /company-proxy/** 
+    testcloud-provider-dept: 
+      path: /dept-proxy/**
+      service-id: testcloud-provider-dept
+    testcloud-provider-upload: 
+      path: /upload-proxy/**
+
+security:
+  basic:
+    enabled: false
+  user:
+    name: zuul
+    password: 123456
+    
+info:
+  app.name: gateway-9502
+  build.artifactId: $project.artifactId$
+  build.version: $project.verson$
+
+spring:
+  application:
+    name: GATEWAY
