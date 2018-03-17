@@ -108,6 +108,7 @@
         <module>testcloud-bean</module>
 	    <module>testcloud-provider-dept-8001</module>
 	    <module>testcloud-zuul-gateway</module>
+		<module>testcloud-zuul-gateway-9502</module>
     	<module>testcloud-turbine</module>
     	<module>testcloud-config-7101</module>
   </modules>

@@ -1,6 +1,15 @@
 server:
   port: 9501
 
+eureka:
+  client: # 客户端进行Eureka注册的配置
+    service-url:
+      defaultZone: http://name:passwd@116.62.23.39:7001/eureka
+  instance:
+    instance-id: gateway-9501  # 在信息列表时显示主机名称
+    prefer-ip-address: true     # 访问的路径变为IP地址
+    hostname: gateway-9501
+
 ribbon:
   eureka:
    enabled: false
@@ -45,14 +54,13 @@ security:
     password: 123456
     
 info:
-  app.name: test-zuul
-  company.name: www.test007.cc
+  app.name: gateway-9501
   build.artifactId: $project.artifactId$
   build.version: $project.verson$
 
 spring:
   application:
-    name: testcloud-zuul-gateway
+    name: GATEWAY
   redis:
     timeout: 10
     database: 0

@@ -68,7 +68,6 @@ public class ShiroConfig {
 //    public DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator() {
 //        return new DefaultAdvisorAutoProxyCreator();
 //    }
-
     @Bean
     public LifecycleBeanPostProcessor lifecycleBeanPostProcessor() {
         return new LifecycleBeanPostProcessor();
